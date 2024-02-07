@@ -6,7 +6,7 @@ import { UserReturnSchema } from '../../schemas'
 import { updateUserService } from './updateUser.service'
 
 export const createUserService = async (
-  { login, name, password, cpf, is_super, is_worker }: IUserRequest,
+  { login, name, password, cpf, is_super }: IUserRequest,
   reqUser: IRequestUser,
 ) => {
   const userData = await prisma.user.findUnique({
@@ -18,7 +18,7 @@ export const createUserService = async (
   password = password || login.slice(0, 6)
   password = hashSync(password, 10)
 
-  if (is_super !== undefined || is_worker !== undefined) {
+  if (is_super !== undefined) {
     if (reqUser) {
       if (!reqUser.is_super) throw new AppError('Missing permissions', 401)
 
@@ -31,7 +31,7 @@ export const createUserService = async (
         },
       })
 
-      return await updateUserService(user.id, { is_super, is_worker }, reqUser)
+      return await updateUserService(user.id, { is_super }, reqUser)
     }
   }
 

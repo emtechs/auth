@@ -1,12 +1,12 @@
 import { Request, Response } from 'express'
 import {
   createUserService,
-  listUserService,
-  retrieveUserService,
-  updateUserService,
   deleteUserService,
-  retrieveUserWithCpfService,
+  listUserService,
   profileUserService,
+  retrieveUserService,
+  retrieveUserWithCpfService,
+  updateUserService,
 } from '../services'
 
 export const createUserController = async (req: Request, res: Response) => {

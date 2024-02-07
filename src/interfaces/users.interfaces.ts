@@ -13,7 +13,6 @@ export type IDash = 'COMMON' | 'SCHOOL' | 'ORGAN' | 'ADMIN'
 export interface IRequestUser {
   id: string
   is_super: boolean
-  is_worker: boolean
 }
 
 export interface IUser {

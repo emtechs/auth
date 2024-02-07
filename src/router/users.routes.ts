@@ -11,7 +11,6 @@ import {
 import {
   validateSchemaMiddleware,
   verifyIsSuper,
-  verifyIsWorker,
   verifyUserIsAuthenticated,
 } from '../middlewares'
 import { UserCreateSchema, UserUpdateRequestSchema } from '../schemas'
@@ -29,12 +28,7 @@ userRouter.post(
   createUserController,
 )
 
-userRouter.get(
-  '',
-  verifyUserIsAuthenticated,
-  verifyIsWorker,
-  listUserController,
-)
+userRouter.get('', verifyUserIsAuthenticated, verifyIsSuper, listUserController)
 
 userRouter.get('/profile', verifyUserIsAuthenticated, profileUserController)
 

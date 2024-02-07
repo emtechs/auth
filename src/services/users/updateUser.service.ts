@@ -11,7 +11,6 @@ export const updateUserService = async (
     is_active,
     is_first_access,
     is_super,
-    is_worker,
     name,
     old_password,
     password,
@@ -30,11 +29,10 @@ export const updateUserService = async (
   } else if (password) password = hashSync(password, 10)
 
   if (is_active !== undefined) {
-    if (!reqUser.is_worker || !reqUser.is_super)
-      throw new AppError('Missing permissions', 401)
+    if (!reqUser.is_super) throw new AppError('Missing permissions', 401)
   }
 
-  if (is_super !== undefined || is_worker !== undefined) {
+  if (is_super !== undefined) {
     if (!reqUser.is_super) throw new AppError('Missing permissions', 401)
   }
 
@@ -46,7 +44,6 @@ export const updateUserService = async (
         email,
         password,
         is_super,
-        is_worker,
         is_active,
         is_first_access,
       },

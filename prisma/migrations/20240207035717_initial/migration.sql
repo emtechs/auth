@@ -7,7 +7,6 @@ CREATE TABLE "users" (
     "password" VARCHAR(128) NOT NULL,
     "cpf" VARCHAR(14) NOT NULL,
     "is_super" BOOLEAN NOT NULL DEFAULT false,
-    "is_worker" BOOLEAN NOT NULL DEFAULT false,
     "is_active" BOOLEAN NOT NULL DEFAULT true,
     "is_first_access" BOOLEAN NOT NULL DEFAULT true,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,

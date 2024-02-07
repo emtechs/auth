@@ -6,7 +6,6 @@ export const UserCreateSchema = z.object({
   password: z.string().optional(),
   cpf: z.string(),
   is_super: z.boolean().optional(),
-  is_worker: z.boolean().optional(),
 })
 
 export const UserReturnSchema = UserCreateSchema.extend({

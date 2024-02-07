@@ -5,6 +5,7 @@ import {
   sendEmailToRecovery,
   updatePasswordController,
   verifyPasswordController,
+  verifyTokenController,
 } from '../controllers'
 import {
   validateSchemaMiddleware,
@@ -27,6 +28,8 @@ sessionRouter.post(
 export const tokenRouter = Router()
 
 tokenRouter.post('', verifyUserIsAuthenticated, refreshSessionController)
+
+tokenRouter.get('/:token', verifyTokenController)
 
 export const passwordRouter = Router()
 

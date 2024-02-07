@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import jwt from 'jsonwebtoken'
 import { NextFunction, Request, Response } from 'express'
 import { AppError } from '../errors'
-import jwt from 'jsonwebtoken'
 import { env } from '../env'
 import { prisma } from '../lib'
 
@@ -22,7 +22,6 @@ export const verifyUserIsAuthenticated = async (
     req.user = {
       id: decoded.sub,
       is_super: decoded.is_super,
-      is_worker: decoded.is_worker,
     }
   })
 
