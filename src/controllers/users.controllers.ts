@@ -3,7 +3,6 @@ import {
   createUserService,
   deleteUserService,
   listUserService,
-  profileUserService,
   retrieveUserService,
   updateUserService,
 } from '../services'
@@ -24,7 +23,7 @@ export const retrieveUserController = async (req: Request, res: Response) => {
 }
 
 export const profileUserController = async (req: Request, res: Response) => {
-  const user = await profileUserService(req.user)
+  const user = await retrieveUserService(req.user.id)
   return res.json(user)
 }
 

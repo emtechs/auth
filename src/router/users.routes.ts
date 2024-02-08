@@ -31,7 +31,7 @@ userRouter.get('', verifyUserIsAuthenticated, verifyIsSuper, listUserController)
 
 userRouter.get('/profile', verifyUserIsAuthenticated, profileUserController)
 
-userRouter.get('/:id', retrieveUserController)
+userRouter.get('/:id', verifyUserIsAuthenticated, retrieveUserController)
 
 userRouter.patch(
   '/:id',
