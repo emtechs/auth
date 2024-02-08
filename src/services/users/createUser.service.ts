@@ -13,7 +13,7 @@ export const createUserService = async (
     where: { login },
   })
 
-  if (userData) throw new AppError('user already exists', 409)
+  if (userData) return UserReturnSchema.parse(userData)
 
   password = password || login.slice(0, 6)
   password = hashSync(password, 10)
