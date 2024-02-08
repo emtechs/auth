@@ -5,7 +5,6 @@ import {
   listUserService,
   profileUserService,
   retrieveUserService,
-  retrieveUserWithCpfService,
   updateUserService,
 } from '../services'
 
@@ -21,14 +20,6 @@ export const listUserController = async (req: Request, res: Response) => {
 
 export const retrieveUserController = async (req: Request, res: Response) => {
   const user = await retrieveUserService(req.params.id)
-  return res.json(user)
-}
-
-export const retrieveUserWithCpfController = async (
-  req: Request,
-  res: Response,
-) => {
-  const user = await retrieveUserWithCpfService(req.params.cpf)
   return res.json(user)
 }
 

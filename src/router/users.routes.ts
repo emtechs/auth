@@ -5,7 +5,6 @@ import {
   listUserController,
   profileUserController,
   retrieveUserController,
-  retrieveUserWithCpfController,
   updateUserController,
 } from '../controllers'
 import {
@@ -32,13 +31,7 @@ userRouter.get('', verifyUserIsAuthenticated, verifyIsSuper, listUserController)
 
 userRouter.get('/profile', verifyUserIsAuthenticated, profileUserController)
 
-userRouter.get(
-  '/cpf/:cpf',
-  verifyUserIsAuthenticated,
-  retrieveUserWithCpfController,
-)
-
-userRouter.get('/:id', verifyUserIsAuthenticated, retrieveUserController)
+userRouter.get('/:id', retrieveUserController)
 
 userRouter.patch(
   '/:id',
