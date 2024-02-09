@@ -7,8 +7,8 @@ export const retrieveUserService = async (id: string) => {
     select: {
       id: true,
       name: true,
+      cpf: true,
       email: true,
-      is_super: true,
       is_first_access: true,
       profile: { select: { url: true } },
     },
