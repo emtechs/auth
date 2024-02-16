@@ -3,6 +3,7 @@ import {
   createUserController,
   deleteUserController,
   listUserController,
+  profileUserController,
   retrieveUserController,
   updateUserController,
 } from '../controllers'
@@ -27,6 +28,8 @@ userRouter.post(
 )
 
 userRouter.get('', verifyUserIsAuthenticated, verifyIsSuper, listUserController)
+
+userRouter.get('/profile', verifyUserIsAuthenticated, profileUserController)
 
 userRouter.get('/:id', verifyUserIsAuthenticated, retrieveUserController)
 
