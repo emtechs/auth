@@ -1,6 +1,6 @@
 import { IUserQuery } from '../../interfaces'
 import { prisma } from '../../lib'
-import { UserArraySchema } from '../../schemas'
+import { UserArraySchemaBody } from '../../schemas'
 
 export const listUserService = async (
   { is_active, take, skip, name }: IUserQuery,
@@ -42,6 +42,6 @@ export const listUserService = async (
 
   return {
     total,
-    result: UserArraySchema.parse(users),
+    result: UserArraySchemaBody.parse(users),
   }
 }

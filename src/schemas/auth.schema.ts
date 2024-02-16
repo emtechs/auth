@@ -1,13 +1,22 @@
 import { z } from 'zod'
 
-export const SessionSchema = z.object({
+export const SessionSchemaBody = z.object({
   login: z.string(),
   password: z.string(),
 })
 
-export const RecoveryPasswordSchema = z.object({
+export const RecoveryPasswordSchemaBody = z.object({
   login: z.string(),
   base_url: z.string().url(),
 })
 
-export const PasswordUpdateSchema = z.object({ password: z.string() })
+export const PasswordUpdateSchemaBody = z.object({ password: z.string() })
+
+export const PasswordUpdateSchemaParams = z.object({
+  userId: z.string().uuid(),
+  token: z.string(),
+})
+
+export const TokenSchemaParams = z.object({
+  token: z.string(),
+})

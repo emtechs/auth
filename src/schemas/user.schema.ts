@@ -1,6 +1,10 @@
 import { z } from 'zod'
 
-export const UserCreateSchema = z.object({
+export const UserIdSchemaParams = z.object({
+  id: z.string().uuid(),
+})
+
+export const UserCreateSchemaBody = z.object({
   login: z.string(),
   name: z.string(),
   password: z.string().optional(),
@@ -8,7 +12,7 @@ export const UserCreateSchema = z.object({
   is_super: z.boolean().optional(),
 })
 
-export const UserReturnSchema = UserCreateSchema.extend({
+export const UserReturnSchemaBody = UserCreateSchemaBody.extend({
   id: z.string().uuid(),
   email: z.string().nullable(),
   created_at: z.date(),
@@ -17,7 +21,7 @@ export const UserReturnSchema = UserCreateSchema.extend({
   profile: z.object({ url: z.string().url() }).nullable().optional(),
 }).omit({ password: true })
 
-export const UserUpdateRequestSchema = UserCreateSchema.extend({
+export const UserUpdateRequestSchemaBody = UserCreateSchemaBody.extend({
   email: z.string().email(),
   old_password: z.string(),
   is_active: z.boolean().optional(),
@@ -26,4 +30,4 @@ export const UserUpdateRequestSchema = UserCreateSchema.extend({
   .omit({ login: true, cpf: true })
   .partial()
 
-export const UserArraySchema = UserReturnSchema.array()
+export const UserArraySchemaBody = UserReturnSchemaBody.array()

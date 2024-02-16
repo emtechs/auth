@@ -8,46 +8,58 @@ import {
   verifyTokenController,
 } from '../controllers'
 import {
-  validateSchemaMiddleware,
+  validateSchemaBodyMiddleware,
+  validateSchemaParamsMiddleware,
   verifyUserIsAuthenticated,
 } from '../middlewares'
 import {
-  PasswordUpdateSchema,
-  RecoveryPasswordSchema,
-  SessionSchema,
+  PasswordUpdateSchemaBody,
+  PasswordUpdateSchemaParams,
+  RecoveryPasswordSchemaBody,
+  SessionSchemaBody,
+  TokenSchemaParams,
 } from '../schemas'
 
 export const sessionRouter = Router()
 
 sessionRouter.post(
   '',
-  validateSchemaMiddleware(SessionSchema),
+  validateSchemaBodyMiddleware(SessionSchemaBody),
   createSessionController,
 )
 
 export const tokenRouter = Router()
 
-tokenRouter.post('', verifyUserIsAuthenticated, refreshSessionController)
+tokenRouter.post(
+  '/:token',
+  validateSchemaParamsMiddleware(TokenSchemaParams),
+  refreshSessionController,
+)
 
-tokenRouter.get('/:token', verifyTokenController)
+tokenRouter.get(
+  '/:token',
+  validateSchemaParamsMiddleware(TokenSchemaParams),
+  verifyTokenController,
+)
 
 export const passwordRouter = Router()
 
 passwordRouter.post(
   '',
-  validateSchemaMiddleware(RecoveryPasswordSchema),
+  validateSchemaBodyMiddleware(RecoveryPasswordSchemaBody),
   sendEmailToRecovery,
 )
 
 passwordRouter.post(
   '/:userId/:token',
-  validateSchemaMiddleware(PasswordUpdateSchema),
+  validateSchemaParamsMiddleware(PasswordUpdateSchemaParams),
+  validateSchemaBodyMiddleware(PasswordUpdateSchemaBody),
   updatePasswordController,
 )
 
 passwordRouter.post(
   '/verify',
   verifyUserIsAuthenticated,
-  validateSchemaMiddleware(PasswordUpdateSchema),
+  validateSchemaBodyMiddleware(PasswordUpdateSchemaBody),
   verifyPasswordController,
 )

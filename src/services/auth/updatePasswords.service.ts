@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 import { hashSync } from 'bcryptjs'
 import { AppError } from '../../errors'
 import { IPasswordUpdateRequest } from '../../interfaces'
-import { UserReturnSchema } from '../../schemas'
+import { UserReturnSchemaBody } from '../../schemas'
 import { prisma, mailGenerator, sendEmail } from '../../lib'
 import { env } from '../../env'
 
@@ -56,5 +56,5 @@ export const updatePasswordService = async (
     const emailBody = mailGenerator.generate(emailContent)
     await sendEmail(user.email, 'Password', emailBody)
   }
-  return UserReturnSchema.parse(user)
+  return UserReturnSchemaBody.parse(user)
 }

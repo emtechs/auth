@@ -6,6 +6,7 @@ import {
   updatePasswordService,
   verifyPasswordService,
   verifyTokenService,
+  verifyUserService,
 } from '../services'
 
 export const createSessionController = async (req: Request, res: Response) => {
@@ -14,8 +15,10 @@ export const createSessionController = async (req: Request, res: Response) => {
   return res.status(201).json(token)
 }
 
-export const refreshSessionController = (req: Request, res: Response) => {
-  const token = refreshSessionService(req.user)
+export const refreshSessionController = async (req: Request, res: Response) => {
+  const id = verifyTokenService(req.params.token)
+  const user = await verifyUserService(id)
+  const token = refreshSessionService(user)
 
   return res.status(201).json(token)
 }
@@ -42,8 +45,8 @@ export const verifyPasswordController = async (req: Request, res: Response) => {
   return res.json({})
 }
 
-export const verifyTokenController = async (req: Request, res: Response) => {
-  const id = await verifyTokenService(req.params.token)
+export const verifyTokenController = (req: Request, res: Response) => {
+  const id = verifyTokenService(req.params.token)
 
   return res.json(id)
 }

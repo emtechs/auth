@@ -4,7 +4,11 @@ import {
   deleteImageController,
 } from '../controllers'
 import { upload } from '../lib'
-import { verifyUserIsAuthenticated } from '../middlewares'
+import {
+  validateSchemaParamsMiddleware,
+  verifyUserIsAuthenticated,
+} from '../middlewares'
+import { ImageIdSchemaParams } from '../schemas'
 
 export const imageRouter = Router()
 
@@ -15,4 +19,9 @@ imageRouter.post(
   createImageProfileController,
 )
 
-imageRouter.delete('/:id', verifyUserIsAuthenticated, deleteImageController)
+imageRouter.delete(
+  '/:id',
+  verifyUserIsAuthenticated,
+  validateSchemaParamsMiddleware(ImageIdSchemaParams),
+  deleteImageController,
+)

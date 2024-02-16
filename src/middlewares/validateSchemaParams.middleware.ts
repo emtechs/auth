@@ -1,11 +1,11 @@
 import { ZodTypeAny } from 'zod/lib'
 import { NextFunction, Request, Response } from 'express'
 
-export const validateSchemaMiddleware =
+export const validateSchemaParamsMiddleware =
   (schema: ZodTypeAny) => (req: Request, res: Response, next: NextFunction) => {
-    const bodyValidated = schema.parse(req.body)
+    const paramsValidated = schema.parse(req.params)
 
-    req.body = bodyValidated
+    req.params = paramsValidated
 
     return next()
   }

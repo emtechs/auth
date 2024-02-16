@@ -2,7 +2,7 @@ import { compareSync, hashSync } from 'bcryptjs'
 import { AppError } from '../../errors'
 import { IRequestUser, IUserUpdateRequest } from '../../interfaces'
 import { prisma } from '../../lib'
-import { UserReturnSchema } from '../../schemas'
+import { UserReturnSchemaBody } from '../../schemas'
 
 export const updateUserService = async (
   id: string,
@@ -49,7 +49,7 @@ export const updateUserService = async (
       },
     })
 
-    return UserReturnSchema.parse(user)
+    return UserReturnSchemaBody.parse(user)
   } catch {
     throw new AppError('user not found', 404)
   }

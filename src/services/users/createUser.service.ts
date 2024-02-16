@@ -2,7 +2,7 @@ import { hashSync } from 'bcryptjs'
 import { prisma } from '../../lib'
 import { IRequestUser, IUserRequest } from '../../interfaces'
 import { AppError } from '../../errors'
-import { UserReturnSchema } from '../../schemas'
+import { UserReturnSchemaBody } from '../../schemas'
 import { updateUserService } from './updateUser.service'
 
 export const createUserService = async (
@@ -13,7 +13,7 @@ export const createUserService = async (
     where: { login },
   })
 
-  if (userData) return UserReturnSchema.parse(userData)
+  if (userData) return UserReturnSchemaBody.parse(userData)
 
   password = password || login.slice(0, 6)
   password = hashSync(password, 10)
@@ -44,5 +44,5 @@ export const createUserService = async (
     },
   })
 
-  return UserReturnSchema.parse(user)
+  return UserReturnSchemaBody.parse(user)
 }
