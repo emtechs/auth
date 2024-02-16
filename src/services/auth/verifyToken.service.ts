@@ -6,7 +6,7 @@ export const verifyTokenService = async (token: string) => {
   let id = ''
 
   jwt.verify(token, env.SECRET_KEY, (error, decoded: any) => {
-    if (error) throw new AppError(error.message, 403)
+    if (error) throw new AppError(error.message, 401)
 
     id = decoded.sub
   })
