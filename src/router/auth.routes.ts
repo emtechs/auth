@@ -36,11 +36,7 @@ tokenRouter.post(
   refreshSessionController,
 )
 
-tokenRouter.get(
-  '/:token',
-  validateSchemaParamsMiddleware(TokenSchemaParams),
-  verifyTokenController,
-)
+tokenRouter.get('', verifyUserIsAuthenticated, verifyTokenController)
 
 export const passwordRouter = Router()
 

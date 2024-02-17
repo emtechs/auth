@@ -5,7 +5,7 @@ import {
   sendEmailRecoveryService,
   updatePasswordService,
   verifyPasswordService,
-  verifyTokenService,
+  verifyTokenRefreshService,
   verifyUserService,
 } from '../services'
 
@@ -16,7 +16,7 @@ export const createSessionController = async (req: Request, res: Response) => {
 }
 
 export const refreshSessionController = async (req: Request, res: Response) => {
-  const id = verifyTokenService(req.params.token)
+  const id = verifyTokenRefreshService(req.params.token)
   const user = await verifyUserService(id)
   const token = refreshSessionService(user)
 
@@ -46,7 +46,5 @@ export const verifyPasswordController = async (req: Request, res: Response) => {
 }
 
 export const verifyTokenController = (req: Request, res: Response) => {
-  const id = verifyTokenService(req.params.token)
-
-  return res.json(id)
+  return res.json(req.user.id)
 }
