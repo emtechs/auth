@@ -3,7 +3,7 @@ import { prisma } from '../../lib'
 import { IRequestUser, IUserRequest } from '../../interfaces'
 import { AppError } from '../../errors'
 import { UserReturnSchemaBody } from '../../schemas'
-import { updateUserService } from './updateUser.service'
+import { updateUserService } from '../../services'
 
 export const createUserService = async (
   { login, name, password, cpf, is_super }: IUserRequest,

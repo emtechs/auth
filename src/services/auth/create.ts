@@ -2,7 +2,7 @@ import { compareSync } from 'bcryptjs'
 import { AppError } from '../../errors'
 import { ISessionRequest } from '../../interfaces'
 import { prisma } from '../../lib'
-import { refreshSessionService } from './refreshSession.service'
+import { refreshSessionService } from '../../services'
 
 export const createSessionService = async ({
   login,

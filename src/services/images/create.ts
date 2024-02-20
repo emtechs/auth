@@ -1,9 +1,9 @@
 import { prisma } from '../../lib'
 import { AppError } from '../../errors'
 import { env } from '../../env'
-import { deleteImageService } from './deleteImage.service'
+import { deleteImageService } from '../../services'
 
-export const createImageProfileService = async (
+export const createImageService = async (
   user_id: string,
   file?: Express.Multer.File,
 ) => {

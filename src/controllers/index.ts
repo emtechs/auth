@@ -1,3 +1,3 @@
-export * from './auth.controllers'
-export * from './images.controllers'
-export * from './users.controllers'
+export * from './auth'
+export * from './images'
+export * from './users'

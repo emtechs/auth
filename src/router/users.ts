@@ -4,6 +4,7 @@ import {
   deleteUserController,
   listUserController,
   profileUserController,
+  retrieveNameUserController,
   retrieveUserController,
   updateUserController,
 } from '../controllers'
@@ -41,6 +42,13 @@ userRouter.get(
   verifyUserIsAuthenticated,
   validateSchemaParamsMiddleware(UserIdSchemaParams),
   retrieveUserController,
+)
+
+userRouter.get(
+  '/:id/name',
+  verifyUserIsAuthenticated,
+  validateSchemaParamsMiddleware(UserIdSchemaParams),
+  retrieveNameUserController,
 )
 
 userRouter.patch(

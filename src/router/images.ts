@@ -1,8 +1,5 @@
 import { Router } from 'express'
-import {
-  createImageProfileController,
-  deleteImageController,
-} from '../controllers'
+import { createImageController, deleteImageController } from '../controllers'
 import { upload } from '../lib'
 import {
   validateSchemaParamsMiddleware,
@@ -16,7 +13,7 @@ imageRouter.post(
   '',
   verifyUserIsAuthenticated,
   upload.single('image'),
-  createImageProfileController,
+  createImageController,
 )
 
 imageRouter.delete(

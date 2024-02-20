@@ -1,6 +1,6 @@
 import { prisma } from '../../lib'
 import { AppError } from '../../errors'
-import { deleteImageService } from '../images'
+import { deleteImageService } from '../../services'
 
 export const deleteUserService = async (login: string) => {
   try {

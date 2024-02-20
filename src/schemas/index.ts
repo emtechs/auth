@@ -1,3 +1,3 @@
-export * from './auth.schema'
-export * from './image.schema'
-export * from './user.schema'
+export * from './auth'
+export * from './image'
+export * from './user'
