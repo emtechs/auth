@@ -1,8 +1,17 @@
 import { Request, Response } from 'express'
-import { createImageService, deleteImageService } from '../services'
+import {
+  createImageService,
+  deleteImageService,
+  uploadImageService,
+} from '../services'
 
 export const createImageController = async (req: Request, res: Response) => {
-  const image = await createImageService(req.user.id, req.file)
+  const image = await createImageService(req.body)
+  return res.status(201).json(image)
+}
+
+export const uploadImageController = async (req: Request, res: Response) => {
+  const image = await uploadImageService(req.user.id, req.file)
   return res.status(201).json(image)
 }
 

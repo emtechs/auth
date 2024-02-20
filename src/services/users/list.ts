@@ -1,9 +1,9 @@
-import { IUserQuery } from '../../interfaces'
+import { IQuery } from '../../interfaces'
 import { prisma } from '../../lib'
 import { UserArraySchemaBody } from '../../schemas'
 
 export const listUserService = async (
-  { is_active, take, skip, name }: IUserQuery,
+  { is_active, take, skip, name }: IQuery,
   id: string,
 ) => {
   if (take) take = +take

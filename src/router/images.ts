@@ -1,19 +1,30 @@
 import { Router } from 'express'
-import { createImageController, deleteImageController } from '../controllers'
+import {
+  createImageController,
+  deleteImageController,
+  uploadImageController,
+} from '../controllers'
 import { upload } from '../lib'
 import {
+  validateSchemaBodyMiddleware,
   validateSchemaParamsMiddleware,
   verifyUserIsAuthenticated,
 } from '../middlewares'
-import { ImageIdSchemaParams } from '../schemas'
+import { ImageCreateSchemaBody, ImageIdSchemaParams } from '../schemas'
 
 export const imageRouter = Router()
 
 imageRouter.post(
   '',
+  validateSchemaBodyMiddleware(ImageCreateSchemaBody),
+  createImageController,
+)
+
+imageRouter.post(
+  '/upload',
   verifyUserIsAuthenticated,
   upload.single('image'),
-  createImageController,
+  uploadImageController,
 )
 
 imageRouter.delete(
