@@ -6,11 +6,11 @@ import { UserReturnSchemaBody } from '../../schemas'
 import { prisma, mailGenerator, sendEmail } from '../../lib'
 import { env } from '../../env'
 
-export const updatePasswordService = async (
-  { password }: IPasswordUpdateRequest,
-  id: string,
-  token: string,
-) => {
+export const updatePasswordService = async ({
+  id,
+  password,
+  token,
+}: IPasswordUpdateRequest) => {
   const userFind = await prisma.user.findUnique({ where: { id } })
   if (!userFind) throw new AppError('Invalid link or expired')
 

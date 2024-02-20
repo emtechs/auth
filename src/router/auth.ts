@@ -14,7 +14,6 @@ import {
 } from '../middlewares'
 import {
   PasswordUpdateSchemaBody,
-  PasswordUpdateSchemaParams,
   RecoveryPasswordSchemaBody,
   SessionSchemaBody,
   TokenSchemaParams,
@@ -46,9 +45,8 @@ passwordRouter.post(
   sendEmailToRecovery,
 )
 
-passwordRouter.post(
-  '/:userId/:token',
-  validateSchemaParamsMiddleware(PasswordUpdateSchemaParams),
+passwordRouter.patch(
+  '',
   validateSchemaBodyMiddleware(PasswordUpdateSchemaBody),
   updatePasswordController,
 )

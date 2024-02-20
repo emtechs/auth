@@ -24,11 +24,7 @@ export const refreshSessionController = async (req: Request, res: Response) => {
 }
 
 export const updatePasswordController = async (req: Request, res: Response) => {
-  const user = await updatePasswordService(
-    req.body,
-    req.params.userId,
-    req.params.token,
-  )
+  const user = await updatePasswordService(req.body)
 
   return res.status(200).json(user)
 }
