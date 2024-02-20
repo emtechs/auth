@@ -10,6 +10,7 @@ export const retrieveUserService = async (id: string) => {
       login: true,
       cpf: true,
       email: true,
+      is_super: true,
       is_first_access: true,
       profile: { select: { url: true } },
     },
