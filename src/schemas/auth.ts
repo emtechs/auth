@@ -10,8 +10,11 @@ export const RecoveryPasswordSchemaBody = z.object({
   base_url: z.string().url(),
 })
 
-export const PasswordUpdateSchemaBody = z.object({
+export const PasswordVerifySchemaBody = z.object({
   password: z.string(),
+})
+
+export const PasswordUpdateSchemaBody = PasswordVerifySchemaBody.extend({
   id: z.string().uuid(),
   token: z.string(),
 })

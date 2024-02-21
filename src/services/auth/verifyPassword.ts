@@ -1,10 +1,10 @@
 import { compareSync } from 'bcryptjs'
 import { AppError } from '../../errors'
-import { IPasswordUpdateRequest } from '../../interfaces'
+import { IPasswordVerifyRequest } from '../../interfaces'
 import { prisma } from '../../lib'
 
 export const verifyPasswordService = async (
-  { password }: IPasswordUpdateRequest,
+  { password }: IPasswordVerifyRequest,
   id: string,
 ) => {
   const user = await prisma.user.findUnique({

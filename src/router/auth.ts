@@ -14,6 +14,7 @@ import {
 } from '../middlewares'
 import {
   PasswordUpdateSchemaBody,
+  PasswordVerifySchemaBody,
   RecoveryPasswordSchemaBody,
   SessionSchemaBody,
   TokenSchemaParams,
@@ -54,6 +55,6 @@ passwordRouter.patch(
 passwordRouter.post(
   '/verify',
   verifyUserIsAuthenticated,
-  validateSchemaBodyMiddleware(PasswordUpdateSchemaBody),
+  validateSchemaBodyMiddleware(PasswordVerifySchemaBody),
   verifyPasswordController,
 )
