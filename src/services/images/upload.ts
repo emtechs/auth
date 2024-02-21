@@ -1,7 +1,7 @@
 import { prisma } from '../../lib'
 import { AppError } from '../../errors'
 import { env } from '../../env'
-import { createImageService, deleteImageService } from '../../services'
+import { createImageService } from '../../services'
 
 export const uploadImageService = async (
   user_id: string,
@@ -10,12 +10,6 @@ export const uploadImageService = async (
   if (!file) throw new AppError('image not found')
 
   const { originalname: name, path, size, filename: key } = file
-
-  const image = await prisma.image.findUnique({
-    where: { user_id },
-  })
-
-  if (image) await deleteImageService(image.id)
 
   const data = {
     name,
