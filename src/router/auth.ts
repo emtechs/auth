@@ -2,10 +2,10 @@ import { Router } from 'express'
 import {
   createSessionController,
   refreshSessionController,
+  retrieveTokenController,
   sendEmailToRecovery,
   updatePasswordController,
   verifyPasswordController,
-  verifyTokenController,
 } from '../controllers'
 import {
   validateSchemaBodyMiddleware,
@@ -36,7 +36,7 @@ tokenRouter.post(
   refreshSessionController,
 )
 
-tokenRouter.get('', verifyUserIsAuthenticated, verifyTokenController)
+tokenRouter.get('', verifyUserIsAuthenticated, retrieveTokenController)
 
 export const passwordRouter = Router()
 

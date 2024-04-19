@@ -23,24 +23,24 @@ export const refreshSessionController = async (req: Request, res: Response) => {
   return res.status(201).json(token)
 }
 
-export const updatePasswordController = async (req: Request, res: Response) => {
-  const user = await updatePasswordService(req.body)
-
-  return res.status(200).json(user)
+export const retrieveTokenController = (req: Request, res: Response) => {
+  return res.json(req.user.id)
 }
 
 export const sendEmailToRecovery = async (req: Request, res: Response) => {
   const user = await sendEmailRecoveryService(req.body)
 
-  return res.status(200).json(user)
+  return res.status(201).json(user)
+}
+
+export const updatePasswordController = async (req: Request, res: Response) => {
+  const user = await updatePasswordService(req.body)
+
+  return res.json(user)
 }
 
 export const verifyPasswordController = async (req: Request, res: Response) => {
   await verifyPasswordService(req.body, req.user.id)
 
   return res.json({})
-}
-
-export const verifyTokenController = (req: Request, res: Response) => {
-  return res.json(req.user.id)
 }

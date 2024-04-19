@@ -16,6 +16,7 @@ export const imageRouter = Router()
 
 imageRouter.post(
   '',
+  verifyUserIsAuthenticated,
   validateSchemaBodyMiddleware(ImageCreateSchemaBody),
   createImageController,
 )
